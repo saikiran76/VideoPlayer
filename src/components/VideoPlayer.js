@@ -7,6 +7,8 @@ const VideoPlayer = ({ videoId }) => {
     width: '1250',
     playerVars: {
       autoplay: 0,
+      controls:1,
+      enablejsapi:1,
     },
   };
 
