@@ -1,21 +1,25 @@
-import React, { useState } from 'react';
+import React, { useState, useRef } from 'react';
 import VideoPlayer from './components/VideoPlayer';
 import Notes from './components/Notes';
 import Header from './components/Header';
-import './App.css'
+import './App.css';
+import Description from './components/Description';
 
 const App = () => {
-  const [videoId, setVideoId] = useState('dQw4w9WgXcQ');
+  const [videoId, setVideoId] = useState('dQw4w9WgXcQ');  
+  const videoPlayerRef = useRef(null);
 
   return (
-    <div className="App min-h-screen py-8 flex flex-col items-center justify-center">
-      <div className="container mx-auto px-4 ">
+    <div className="App font-inter min-h-screen py-8 bg-gray-100">
+      <div className="container mx-auto px-4">
         <Header/>
-        <VideoPlayer videoId={videoId}/>
-        <Notes videoId={videoId} />
+        <VideoPlayer ref={videoPlayerRef} videoId={videoId} />
+        <Description/>
+        <Notes videoId={videoId} videoPlayer={videoPlayerRef} />
       </div>
     </div>
   );
 };
 
 export default App;
+
