@@ -62,6 +62,29 @@ const Notes = ({ videoId, videoPlayer }) => {
     }
   };
 
+  console.log(notes[0]);
+
+  const formatDate = (dateString) => {
+    const date = new Date(dateString);
+    
+    const day = date.getDate();
+    const month = date.toLocaleString('default', { month: 'long' });
+    const year = date.getFullYear();
+    
+    return `${day} ${month} ${year}`;
+  };
+
+  const formatTime = (seconds) => {
+    const mins = Math.floor(seconds / 60);
+    const secs = seconds % 60;
+  
+    const formattedMins = String(mins).padStart(2, '0');
+    const formattedSecs = String(secs).padStart(2, '0');
+  
+    return `${formattedMins} min ${formattedSecs} secs`;
+  };
+
+
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg font-inter border-gray-300 border-l border-r border-b border-t">
       <h1 className="font-inter font-semibold text-xl mb-2">My Notes</h1>
@@ -77,8 +100,10 @@ const Notes = ({ videoId, videoPlayer }) => {
 
       {notes.map((note, index) => (
         <div key={index} className="mt-4 p-4 border border-gray-300 rounded">
-          <p>{note.dateCreated} - <span className="text-blue-500 cursor-pointer" onClick={() => jumpToTimestamp(note.timestamp)}>Jump to {note.timestamp}s</span></p>
+          <div className='rounded-lg'>
+          <p>{formatDate(note.dateCreated)} - <span className="text-blue-500 cursor-pointer block" onClick={() => jumpToTimestamp(note.timestamp)}><span className='text-gray-600'>TimeStamp:</span> {formatTime(note.timestamp)}</span></p>
           <p>{note.content}</p>
+          </div>
           <div className='flex gap-4 justify-end items-center'>
             <div onClick={() => editNote(index)}><Button name='Edit' margin={""} /></div>
             <div onClick={() => deleteNote(index)}><Button name={"Delete"} /></div>
