@@ -23,7 +23,7 @@ const VideoPlayer = forwardRef(({ videoId }, ref) => {
     });
   }, [videoId, ref]);
 
-  return <div id="player" className="video-player shadow-lg rounded-lg overflow-hidden bg-gradient-to-b from-purple-300 via-pink-300 to-red-100 w-[620px] h-[300px] md:h-[600px] md:w-[1250px]"></div>;
+  return <div id="player" className="video-player shadow-lg rounded-lg overflow-hidden bg-gradient-to-b from-purple-300 via-pink-300 to-red-100 w-[620px] h-[300px] md:h-[600px] md:w-[1220px]"></div>;
 });
 
 export default VideoPlayer;
