@@ -1,3 +1,7 @@
+/**
+ * Reusable button component
+ */
+
 import { IoIosAddCircleOutline } from "react-icons/io";
 
 export const Button = ({name="Delete", weight, icon=false, margin}) =>{

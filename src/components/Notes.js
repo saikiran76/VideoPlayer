@@ -1,3 +1,11 @@
+/**
+ * Notes Component where user can add notes wrt timestamps of videos
+ * -- User can add Notes
+ * -- Can quickly jump to the point of time in video wrt timestamps
+ * -- Can edit/delete the Notes added
+ * -- Can upload images saved as base64 format locally
+ */
+
 import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import ReactQuill from 'react-quill';
