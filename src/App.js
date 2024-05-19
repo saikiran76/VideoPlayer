@@ -10,7 +10,7 @@ const App = () => {
   const videoPlayerRef = useRef(null);
 
   return (
-    <div className="App font-inter min-h-screen py-8 bg-gray-100">
+    <div className="App font-inter min-h-screen py-8 bg-gray-100 m-4">
       <div className="container mx-auto px-4">
         <Header/>
         <VideoPlayer ref={videoPlayerRef} videoId={videoId} />
