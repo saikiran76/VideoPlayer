@@ -174,12 +174,10 @@ Notes.modules = {
       [{'color': []}, {'background': []}]
   ],
   clipboard: {
-      // Toggle to add extra line breaks when pasting HTML:
       matchVisual: false,
   }
 };
 
-// Formats objects for Quill editor
 Notes.formats = [
   'header', 'font', 'size',
   'bold', 'italic', 'underline', 'strike', 'blockquote',
