@@ -63,9 +63,12 @@ const Notes = ({ videoId, videoPlayer }) => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-lg shadow-lg font-inter">
+    <div className="bg-white p-6 rounded-lg shadow-lg font-inter border-gray-300 border-l border-r border-b border-t">
+      <h1 className="font-inter font-semibold text-xl mb-2">My Notes</h1>
+      <p className='text-zinc-500 mb-4'>All your notes at a single place. Click on any note to go to specific timestamp in the video.</p>
+      <hr></hr>
       <textarea
-        className="w-full p-3 border border-gray-300 rounded mb-4 shadow-lg"
+        className="w-full p-3 border mt-4 border-gray-300 rounded mb-4 shadow-lg"
         value={noteText}
         onChange={e => setNoteText(e.target.value)}
         placeholder="Enter your note here..."
@@ -74,10 +77,10 @@ const Notes = ({ videoId, videoPlayer }) => {
 
       {notes.map((note, index) => (
         <div key={index} className="mt-4 p-4 border border-gray-300 rounded">
-          <p>{note.content}</p>
           <p>{note.dateCreated} - <span className="text-blue-500 cursor-pointer" onClick={() => jumpToTimestamp(note.timestamp)}>Jump to {note.timestamp}s</span></p>
+          <p>{note.content}</p>
           <div className='flex gap-4 justify-end items-center'>
-            <div onClick={() => editNote(index)}><Button name='Edit' margin={"mr-2"} /></div>
+            <div onClick={() => editNote(index)}><Button name='Edit' margin={""} /></div>
             <div onClick={() => deleteNote(index)}><Button name={"Delete"} /></div>
           </div>
         </div>
