@@ -10,6 +10,7 @@ import React, { useState, useEffect } from 'react';
 import { Button } from './Button';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
+import { Heading } from './Heading';
 
 const Notes = ({ videoId, videoPlayer }) => {
   const [notes, setNotes] = useState([]);
@@ -55,41 +56,17 @@ const Notes = ({ videoId, videoPlayer }) => {
     setNoteText(notes[index].content);
   };
 
-
-//   const deleteNote = (index) => {
-//     setNotes(currentNotes => {
-//         const updatedNotes = [...currentNotes];
-//         updatedNotes.splice(index, 1);
-//         localStorage.setItem(videoId, JSON.stringify(updatedNotes)); 
-//         return updatedNotes;
-//     });
-// };
-
-  // const deleteNote = (index) => {
-  //   setNotes(currentNotes => {
-  //       const filteredNotes = currentNotes.filter(note => note.trim() !== '');
-  //       const updatedNotes = [...filteredNotes];
-        
-  //       if (index >= 0 && index < updatedNotes.length) {
-  //           updatedNotes.splice(index, 1);
-  //       }
-
-  //       localStorage.setItem(videoId, JSON.stringify(updatedNotes)); 
-  //       return updatedNotes;
-  //   });
-  // };
-
   const deleteNote = (index) => {
     setNotes(currentNotes => {
-        const filteredNotes = currentNotes.filter(note => typeof note === 'string' && note.trim() !== '');
-        const updatedNotes = [...filteredNotes];
-        
-        if (index >= 0 && index < updatedNotes.length) {
-            updatedNotes.splice(index, 1);
-        }
+      const filteredNotes = currentNotes.filter(note => typeof note === 'string' && note.trim() !== '');
+      const updatedNotes = [...filteredNotes];
+      
+      if (index >= 0 && index < updatedNotes.length) {
+          updatedNotes.splice(index, 1);
+      }
 
-        localStorage.setItem(videoId, JSON.stringify(updatedNotes)); 
-        return updatedNotes;
+      localStorage.setItem(videoId, JSON.stringify(updatedNotes)); 
+      return updatedNotes;
     });
   };
 
@@ -108,7 +85,7 @@ const Notes = ({ videoId, videoPlayer }) => {
     }
   };
 
-  console.log(notes[0]);
+  // console.log(notes[0]); debugging purpose
 
   const formatDate = (dateString) => {
     const date = new Date(dateString);
@@ -133,7 +110,10 @@ const Notes = ({ videoId, videoPlayer }) => {
 
   return (
     <div className="bg-white p-6 rounded-lg shadow-lg font-inter border-gray-300 border-l border-r border-b border-t"> 
-      <h1 className="font-inter font-semibold text-xl mb-2">My Notes</h1>
+  
+      <Heading name='My Notes' margin="m-[0.1em]" size="text-xl"/>
+      <p className='text-zinc-500 mb-4'>All your notes at a single place. Click on any note to go to specific timestamp in the video.</p>
+      <hr></hr>
       <ReactQuill
         theme="snow"
         value={noteText}
@@ -142,22 +122,22 @@ const Notes = ({ videoId, videoPlayer }) => {
         formats={Notes.formats}
         style={{margin:"1.5em"}}
       />
-      <input type="file" accept="image/*" onChange={handleImageUpload} className="my-2"/>
-      <p className='text-zinc-500 mb-4'>All your notes at a single place. Click on any note to go to specific timestamp in the video.</p>
-      <hr></hr>
+
+      <input type="file" accept="image/*" onChange={handleImageUpload} className="my-2 mx-5"/>
+
       <textarea
         className="w-full p-3 border mt-4 border-gray-300 rounded mb-4 shadow-lg"
         value={noteText}
         onChange={e => setNoteText(e.target.value)}
         placeholder="Enter your note here..."
       />
+
       <div className='flex justify-end' onClick={addOrUpdateNote}><Button name={editMode ? 'Update Note' : 'Add Note'} icon={true}/></div>
 
       {notes.map((note, index) => (
         <div key={index} className="mt-4 p-4">
           <div className='rounded-lg'>
           <p>{formatDate(note.dateCreated)} <span className="text-blue-500 cursor-pointer block" onClick={() => jumpToTimestamp(note.timestamp)}><span className='text-gray-600'>TimeStamp:</span> {formatTime(note.timestamp)}</span></p>
-          {/* <p className='border border-gray-300 rounded p-6 mb-2 mt-2'>{note.content}</p> */}
           <div className='border border-gray-300 rounded p-6 mb-2 mt-2' dangerouslySetInnerHTML={{ __html: note.content }} />
           </div>
           <div className='flex gap-4 justify-end items-center'>

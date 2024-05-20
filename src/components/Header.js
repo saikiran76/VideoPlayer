@@ -1,7 +1,9 @@
+import { Heading } from "./Heading";
+
 const Header = () =>{
     return(
         <div>
-            <h1 className="font-inter m-2 mb-4 text-3xl font-bold">Video Player with Notes</h1>
+            <Heading size="text-3xl"/>
         </div>
 
     )
