@@ -26,8 +26,8 @@ This project implements a video player application using ReactJS. It allows user
 1. **Clone the repository**
 
    ```bash
-   git clone https://github.com/yourusername/videoplayer-with-notes.git
-   cd videoplayer-with-notes
+   git clone https://github.com/saikiran76/VideoPlayer.git
+   cd VideoPlayer
 
 2. **Install dependencies**
 
